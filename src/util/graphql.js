@@ -5,6 +5,7 @@ export const FETCH_POSTS_QUERY = gql`
     getPosts {
       id
       image
+      video
       body
       createdAt
       username

@@ -7,9 +7,11 @@ import { AuthContext } from "../context/auth";
 import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
 import MyPopup from "../util/MyPopup";
+import Video from "./Video";
 
 function PostCard({
   post: {
+    video,
     image,
     body,
     createdAt,
@@ -34,6 +36,7 @@ function PostCard({
         <Card.Meta as={Link} to={`/posts/${id}`}>
           {moment(createdAt).fromNow(true)}
         </Card.Meta>
+        {video.length > 0 && <Video url={video}/>}
         {image.length > 0 && image.match(/\.(jpeg|jpg|gif|png)$/) != null && <Image src={image} />}
         <Card.Description>{body}</Card.Description>
       </Card.Content>
