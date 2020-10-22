@@ -1,3 +1,9 @@
+## React Frontend for Social Platform
+
+The Application frontend is hosted on netify https://sleepy-jang-f2ef17.netlify.app.
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
