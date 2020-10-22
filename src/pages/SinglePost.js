@@ -16,6 +16,7 @@ import { AuthContext } from "../context/auth";
 import LikeButton from "../components/LikeButton";
 import DeleteButton from "../components/DeleteButton";
 import MyPopup from "../util/MyPopup";
+import Video from "../components/Video";
 
 function SinglePost(props) {
   const postId = props.match.params.postId;
@@ -54,6 +55,8 @@ function SinglePost(props) {
     const {
       id,
       body,
+      image,
+      video,
       createdAt,
       username,
       comments,
@@ -78,6 +81,12 @@ function SinglePost(props) {
                 <Card.Header>{username}</Card.Header>
                 <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
                 <Card.Description>{body}</Card.Description>
+                {image.length > 0 && <Image src={image}></Image>}
+                {video.length > 0 && (
+                  <Card.Description>
+                    <Video url={video} />
+                  </Card.Description>
+                )}
               </Card.Content>
               <hr />
               <Card.Content extra>
@@ -168,6 +177,8 @@ const FETCH_POST_QUERY = gql`
     getPost(postId: $postId) {
       id
       body
+      image
+      video
       createdAt
       username
       likeCount

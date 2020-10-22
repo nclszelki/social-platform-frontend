@@ -9,6 +9,8 @@ import { FETCH_POSTS_QUERY } from "../util/graphql";
 function PostForm() {
   const { values, onChange, onSubmit } = useForm(createPostCallback, {
     body: "",
+    image: "",
+    video: "",
   });
 
   const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
@@ -33,10 +35,25 @@ function PostForm() {
         <h2>Create a post:</h2>
         <Form.Field>
           <Form.Input
+            placeholder="img url"
+            name="image"
+            onChange={onChange}
+            value={values.image}
+            error={error ? true : false}
+          />
+          <Form.Input
             placeholder="Hi World!"
             name="body"
             onChange={onChange}
             value={values.body}
+            error={error ? true : false}
+          />
+
+          <Form.Input
+            placeholder="video url"
+            name="video"
+            onChange={onChange}
+            value={values.video}
             error={error ? true : false}
           />
           <Button type="submit" color="teal">
@@ -56,10 +73,12 @@ function PostForm() {
 }
 
 const CREATE_POST_MUTATION = gql`
-  mutation createPost($body: String!) {
-    createPost(body: $body) {
+  mutation createPost($body: String!, $image: String!, $video: String!) {
+    createPost(body: $body, image: $image, video: $video) {
       id
       body
+      image
+      video
       createdAt
       username
       likes {
